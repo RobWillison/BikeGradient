@@ -14,7 +14,7 @@ GPIO.setup(upPin, GPIO.OUT)
 GPIO.setup(downPin, GPIO.OUT)
 
 current = False
-pos = 0
+pos = 20
 
 GPIO.output(downPin, GPIO.LOW)
 GPIO.output(upPin, GPIO.LOW)

@@ -5,6 +5,7 @@ import numpy
 import time
 import uuid
 import read_grad
+import requests
 
 def run():
     with mss.mss() as sct:
@@ -20,9 +21,11 @@ def run():
             grad = read_grad.read(img)
 
             if len(grad) > 0 and grad[-1] == '%':
+                print(grad[:-1])
                 gradient = int(grad[:-1])
 
-                
+                r = requests.get('http://192.168.1.196:5000/set?value=' + str(gradient))
+
 
 
             time.sleep(2)

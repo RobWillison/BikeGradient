@@ -1,5 +1,6 @@
 from flask import Flask
 import redis
+from flask import request
 
 r = redis.Redis(host='localhost', port=6379, db=0)
 
@@ -33,6 +34,12 @@ def up():
     current = int(r.get('foo'))
     r.set('foo', current + 1)
     return 'Up'
+
+@app.route('/set')
+def set():
+    value = int(request.args.get('value'))
+    r.set('foo', value)
+    return 'Set'
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
